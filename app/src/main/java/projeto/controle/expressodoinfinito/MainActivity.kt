@@ -1,46 +1,35 @@
 package projeto.controle.expressodoinfinito
 
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.View.SYSTEM_UI_FLAG_IMMERSIVE
+import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import projeto.controle.expressodoinfinito.ui.theme.ExpressoDoInfinitoTheme
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import projeto.controle.expressodoinfinito.databinding.InicioBinding
+import projeto.controle.expressodoinfinito.databinding.PrincipalBinding
 
 class MainActivity : ComponentActivity() {
+    private lateinit var bindingPrincipal: PrincipalBinding
+    private lateinit var bindingInicio: InicioBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ExpressoDoInfinitoTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        window?.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        val decorView: View = window.decorView
+        val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE
+        decorView.systemUiVisibility = uiOptions
+
+        bindingPrincipal = PrincipalBinding.inflate(layoutInflater)
+        bindingInicio = InicioBinding.inflate(layoutInflater)
+        setContentView(bindingInicio.root)
+
+        bindingInicio.button.setOnClickListener {
+            setContentView(bindingPrincipal.root)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ExpressoDoInfinitoTheme {
-        Greeting("Android")
     }
 }
