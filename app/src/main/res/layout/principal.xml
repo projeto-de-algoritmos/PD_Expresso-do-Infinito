@@ -68,6 +68,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
+                            <Button
+                                android:id="@+id/button2"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="134dp"
+                                android:layout_height="36dp"
+                                android:layout_marginStart="33dp"
+                                android:layout_marginTop="197dp"
+                                android:layout_marginEnd="33dp"
+                                android:layout_marginBottom="17dp"
+                                android:fontFamily="serif-monospace"
+                                android:text="Iniciar"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:strokeColor="#FFFFFF" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -88,6 +106,26 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
+                            <ImageView
+                                android:id="@+id/imageView_quadro"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:foreground="@drawable/mesa"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/imageView_mesa_topo"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_marginStart="60dp"
+                                android:layout_marginTop="32dp"
+                                android:foreground="@drawable/mesa_cima"
+                                android:visibility="invisible"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -113,7 +151,17 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:orientation="vertical" />
+                            android:layout_gravity="center"
+                            android:gravity="center">
+
+                            <Button
+                                android:id="@+id/button_mesa"
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:foreground="@drawable/mesa_icon" />
+                        </LinearLayout>
                     </HorizontalScrollView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -139,6 +187,18 @@
                         android:text="Dia 1"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/button_voltar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="#00FFFFFF"
+                        android:foreground="@drawable/voltar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
