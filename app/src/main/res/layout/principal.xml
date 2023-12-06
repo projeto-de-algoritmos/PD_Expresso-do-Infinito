@@ -121,11 +121,12 @@
                                 android:layout_width="120dp"
                                 android:layout_height="120dp"
                                 android:layout_marginStart="60dp"
-                                android:layout_marginTop="32dp"
+                                android:layout_marginTop="40dp"
                                 android:foreground="@drawable/mesa_cima"
                                 android:visibility="invisible"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -160,7 +161,43 @@
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_weight="1"
-                                android:foreground="@drawable/mesa_icon" />
+                                android:background="@drawable/mesa_icon"
+                                android:fontFamily="sans-serif-light"
+                                android:text="$1200"
+                                android:textColor="#FFFFFF" />
+
+                            <Button
+                                android:id="@+id/button_comoda"
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/comoda_icon"
+                                android:fontFamily="sans-serif-light"
+                                android:text="$900"
+                                android:textColor="#FFFFFF" />
+
+                            <Button
+                                android:id="@+id/button_caixa"
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/caixa_icon"
+                                android:fontFamily="sans-serif-light"
+                                android:text="$250"
+                                android:textColor="#FFFFFF" />
+
+                            <Button
+                                android:id="@+id/button_planta"
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/planta_icon"
+                                android:fontFamily="sans-serif-light"
+                                android:text="$200"
+                                android:textColor="#FFFFFF" />
                         </LinearLayout>
                     </HorizontalScrollView>
                 </androidx.constraintlayout.widget.ConstraintLayout>

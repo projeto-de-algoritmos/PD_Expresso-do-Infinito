@@ -1,15 +1,13 @@
 package projeto.controle.expressodoinfinito
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
-import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.SYSTEM_UI_FLAG_IMMERSIVE
-import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
-import androidx.annotation.RequiresApi
+import androidx.compose.ui.input.key.Key.Companion.K
+import androidx.compose.ui.input.key.Key.Companion.W
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import projeto.controle.expressodoinfinito.databinding.InicioBinding
@@ -21,7 +19,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         window?.statusBarColor = ContextCompat.getColor(this, R.color.black)
         val decorView: View = window.decorView
         val uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE
@@ -37,55 +35,33 @@ class MainActivity : ComponentActivity() {
         bindingPrincipal.buttonVoltar.setOnClickListener {
             setContentView(bindingInicio.root)
         }
-        bindingPrincipal.buttonMesa.setOnClickListener {
-            bindingPrincipal.imageViewMesaTopo.isVisible = true
-            //bindingPrincipal.imageViewMesaTopo.setImageResource(R.drawable.mesa_cima)
+
+        var ocupacao = Array(3) {IntArray(3)}
+        var valores = intArrayOf(200, 200, 200, 200, 200, 200, 200, 200, 200, 250, 250, 250, 250, 900, 900, 900, 1200)
+        var pesos = intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4)
+        var capacidade = 9
+        var qtdItens = valores.size
+
+        val memoization = Array(qtdItens + 1) { IntArray(capacidade + 1) }
+
+        knapSack(memoization, capacidade, pesos, valores, qtdItens)
+
+        memoization.forEach { linha ->
+            println(linha.joinToString(" "))
         }
+    }
+    private fun knapSack(memoization: Array<IntArray>, Capacidade: Int, pesos: IntArray, valores: IntArray, qtdItens: Int): Int {
+        for (i in 0..qtdItens) {
+            for (w in 0..Capacidade) {
+                if (i == 0 || w == 0)
+                    memoization[i][w] = 0
+                else if (pesos[i - 1] <= w)
+                    memoization[i][w] = kotlin.math.max(valores[i - 1] + memoization[i - 1][w - pesos[i - 1]], memoization[i - 1][w])
+                else
+                    memoization[i][w] = memoization[i - 1][w]
+            }
+        }
+        return memoization[qtdItens][Capacidade]
     }
 
-    class PuzzlePiece(val image: Bitmap) {
-        var x: Float = 0f
-        var y: Float = 0f
-        var isLocked = false
-    }
-
-    private var puzzlePiece: PuzzlePiece? = null
-    private var selectedPiece: PuzzlePiece? = null
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                // Verifique se o toque ocorreu em cima de um objeto
-                puzzlePiece?.let {
-                    if (event.x >= it.x && event.x < it.x + it.image.width &&
-                        event.y >= it.y && event.y < it.y + it.image.height
-                    ) {
-                        // Se o toque foi em cima do objeto, marque-o como selecionado
-                        selectedPiece = it
-                    }
-                }
-            }
-            MotionEvent.ACTION_MOVE -> {
-                // Atualize a posição do objeto com a posição do toque
-                selectedPiece?.let {
-                    it.x = event.x - it.image.width / 2
-                    it.y = event.y - it.image.height / 2
-                }
-            }
-            MotionEvent.ACTION_UP -> {
-                // Libere o objeto
-                selectedPiece = null
-            }
-        }
-        // Redesenhe a tela
-        //invalidate()
-        return true
-    }
-/*
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        // Desenhe cada peça do quebra-cabeça
-        puzzlePieces.forEach { piece ->
-            canvas.drawBitmap(piece.image, piece.x, piece.y, null)
-        }
-    }*/
 }
