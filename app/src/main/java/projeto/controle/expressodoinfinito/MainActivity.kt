@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                                         imageView.setImageDrawable(
                                             ContextCompat.getDrawable(
                                                 this,
-                                                R.drawable.mesa_cima
+                                                R.drawable.mesa_esquerdo
                                             )
                                         )
                                         bindingPrincipal.frame1.addView(imageView)
@@ -96,7 +96,7 @@ class MainActivity : ComponentActivity() {
                                         imageView.setImageDrawable(
                                             ContextCompat.getDrawable(
                                                 this,
-                                                R.drawable.mesa_cima
+                                                R.drawable.mesa_direito
                                             )
                                         )
                                         bindingPrincipal.frame1.addView(imageView)
@@ -109,7 +109,7 @@ class MainActivity : ComponentActivity() {
                                     0 -> {
                                         val imageSize = TypedValue.applyDimension(
                                             TypedValue.COMPLEX_UNIT_DIP,
-                                            120f,
+                                            160f,
                                             resources.displayMetrics
                                         ).toInt()
 
@@ -120,7 +120,7 @@ class MainActivity : ComponentActivity() {
                                         imageView.setImageDrawable(
                                             ContextCompat.getDrawable(
                                                 this,
-                                                R.drawable.mesa_cima
+                                                R.drawable.mesa_esquerdo
                                             )
                                         )
                                         bindingPrincipal.frame3.addView(imageView)
@@ -129,7 +129,7 @@ class MainActivity : ComponentActivity() {
                                     1 -> {
                                         val imageSize = TypedValue.applyDimension(
                                             TypedValue.COMPLEX_UNIT_DIP,
-                                            120f,
+                                            160f,
                                             resources.displayMetrics
                                         ).toInt()
 
@@ -140,7 +140,7 @@ class MainActivity : ComponentActivity() {
                                         imageView.setImageDrawable(
                                             ContextCompat.getDrawable(
                                                 this,
-                                                R.drawable.mesa_cima
+                                                R.drawable.mesa_direito
                                             )
                                         )
                                         bindingPrincipal.frame3.addView(imageView)
@@ -365,9 +365,390 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        bindingPrincipal.buttonCaixa.setOnClickListener {
+        bindingPrincipal.buttonBanco.setOnClickListener {
             bindingPrincipal.dPad.isVisible = true
+            val imageView = ImageView(this)
 
+            var i = 0
+            var j = 0
+            var livre = false
+
+            //Verifica na horizontal
+            while (i < ocupacao.size) {
+                while (j < ocupacao.size-1) {
+                    if (ocupacao[i][j] == 0 && ocupacao[i][j+1] == 0) {
+                        ocupacao[i][j] = 1
+                        ocupacao[i][j+1] = 1
+
+                        when (i) {
+                            0 -> {
+                                when (j) {
+                                    0 -> {
+                                        val imageAltura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            102f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        val imageLargura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            82f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        // Defina as propriedades da ImageView
+                                        val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                        layoutParams.gravity = Gravity.TOP or Gravity.START
+                                        imageView.layoutParams = layoutParams
+                                        imageView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                this,
+                                                R.drawable.banco_horizontal_e
+                                            )
+                                        )
+                                        bindingPrincipal.frame1.addView(imageView)
+                                    }
+
+                                    1 -> {
+                                        val imageAltura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            102f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        val imageLargura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            82f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        // Defina as propriedades da ImageView
+                                        val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                        layoutParams.gravity = Gravity.TOP or Gravity.END
+                                        imageView.layoutParams = layoutParams
+                                        imageView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                this,
+                                                R.drawable.banco_horizontal_d
+                                            )
+                                        )
+                                        bindingPrincipal.frame1.addView(imageView)
+                                    }
+                                }
+                            }
+
+                            1 -> {
+                                when (j) {
+                                    0 -> {
+                                        val imageAltura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            128f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        val imageLargura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            102f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        // Defina as propriedades da ImageView
+                                        val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                        layoutParams.gravity = Gravity.CENTER_VERTICAL or Gravity.START
+                                        imageView.layoutParams = layoutParams
+                                        imageView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                this,
+                                                R.drawable.banco_horizontal_e
+                                            )
+                                        )
+                                        bindingPrincipal.frame2.addView(imageView)
+                                    }
+
+                                    1 -> {
+                                        val imageAltura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            128f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        val imageLargura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            102f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        // Defina as propriedades da ImageView
+                                        val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                        layoutParams.gravity = Gravity.CENTER_VERTICAL or Gravity.END
+                                        imageView.layoutParams = layoutParams
+                                        imageView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                this,
+                                                R.drawable.banco_horizontal_d
+                                            )
+                                        )
+                                        bindingPrincipal.frame2.addView(imageView)
+                                    }
+                                }
+                            }
+
+                            2 -> {
+                                when (j) {
+                                    0 -> {
+                                        val imageAltura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            160f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        val imageLargura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            128f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        // Defina as propriedades da ImageView
+                                        val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                        layoutParams.gravity = Gravity.BOTTOM or Gravity.START
+                                        imageView.layoutParams = layoutParams
+                                        imageView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                this,
+                                                R.drawable.banco_horizontal_e
+                                            )
+                                        )
+                                        bindingPrincipal.frame3.addView(imageView)
+                                    }
+
+                                    1 -> {
+                                        val imageAltura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            160f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        val imageLargura = TypedValue.applyDimension(
+                                            TypedValue.COMPLEX_UNIT_DIP,
+                                            128f,
+                                            resources.displayMetrics
+                                        ).toInt()
+
+                                        // Defina as propriedades da ImageView
+                                        val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                        layoutParams.gravity = Gravity.BOTTOM or Gravity.END
+                                        imageView.layoutParams = layoutParams
+                                        imageView.setImageDrawable(
+                                            ContextCompat.getDrawable(
+                                                this,
+                                                R.drawable.banco_horizontal_d
+                                            )
+                                        )
+                                        bindingPrincipal.frame3.addView(imageView)
+                                    }
+                                }
+                            }
+                        }
+
+                        i = ocupacao.size
+                        j = ocupacao.size
+                        livre = true
+                    }
+                    j++
+                }
+                i++
+                j = 0
+            }
+
+            if (!livre) {
+                i = 0
+                j = 0
+                //Verifica na vertical
+                while (j < ocupacao.size) {
+                    while (i < ocupacao.size - 1) {
+                        if (ocupacao[i][j] == 0 && ocupacao[i+1][j] == 0) {
+                            ocupacao[i][j] = 1
+                            ocupacao[i+1][j] = 1
+
+                            when (j) {
+                                0 -> {
+                                    when (i) {
+                                        0 -> {
+                                            val imageAltura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                60f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            val imageLargura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                130f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            // Defina as propriedades da ImageView
+                                            val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                            layoutParams.gravity = Gravity.TOP or Gravity.START
+                                            imageView.layoutParams = layoutParams
+                                            imageView.setImageDrawable(
+                                                ContextCompat.getDrawable(
+                                                    this,
+                                                    R.drawable.banco_vertical_e
+                                                )
+                                            )
+                                            bindingPrincipal.frame1.addView(imageView)
+                                        }
+
+                                        1 -> {
+                                            val imageAltura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                74f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            val imageLargura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                160f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            // Defina as propriedades da ImageView
+                                            val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                            layoutParams.gravity = Gravity.TOP or Gravity.END
+                                            imageView.layoutParams = layoutParams
+                                            imageView.setImageDrawable(
+                                                ContextCompat.getDrawable(
+                                                    this,
+                                                    R.drawable.banco_vertical_e
+                                                )
+                                            )
+                                            bindingPrincipal.frame3.addView(imageView)
+                                        }
+                                    }
+                                }
+
+                                1 -> {
+                                    when (i) {
+                                        0 -> {
+                                            val imageAltura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                60f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            val imageLargura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                130f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            // Defina as propriedades da ImageView
+                                            val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                            layoutParams.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                                            imageView.layoutParams = layoutParams
+                                            imageView.setImageDrawable(
+                                                ContextCompat.getDrawable(
+                                                    this,
+                                                    R.drawable.banco_vertical
+                                                )
+                                            )
+                                            bindingPrincipal.frame1.addView(imageView)
+                                        }
+
+                                        1 -> {
+                                            val imageAltura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                74f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            val imageLargura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                160f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            // Defina as propriedades da ImageView
+                                            val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                            layoutParams.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+                                            imageView.layoutParams = layoutParams
+                                            imageView.setImageDrawable(
+                                                ContextCompat.getDrawable(
+                                                    this,
+                                                    R.drawable.banco_vertical
+                                                )
+                                            )
+                                            bindingPrincipal.frame3.addView(imageView)
+                                        }
+                                    }
+                                }
+
+                                2 -> {
+                                    when (i) {
+                                        0 -> {
+                                            val imageAltura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                60f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            val imageLargura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                130f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            // Defina as propriedades da ImageView
+                                            val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                            layoutParams.gravity = Gravity.TOP or Gravity.END
+                                            imageView.layoutParams = layoutParams
+                                            imageView.setImageDrawable(
+                                                ContextCompat.getDrawable(
+                                                    this,
+                                                    R.drawable.banco_vertical_d
+                                                )
+                                            )
+                                            bindingPrincipal.frame1.addView(imageView)
+                                        }
+
+                                        1 -> {
+                                            val imageAltura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                74f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            val imageLargura = TypedValue.applyDimension(
+                                                TypedValue.COMPLEX_UNIT_DIP,
+                                                160f,
+                                                resources.displayMetrics
+                                            ).toInt()
+
+                                            // Defina as propriedades da ImageView
+                                            val layoutParams = FrameLayout.LayoutParams(imageAltura, imageLargura)
+                                            layoutParams.gravity = Gravity.BOTTOM or Gravity.END
+                                            imageView.layoutParams = layoutParams
+                                            imageView.setImageDrawable(
+                                                ContextCompat.getDrawable(
+                                                    this,
+                                                    R.drawable.banco_vertical_d
+                                                )
+                                            )
+                                            bindingPrincipal.frame3.addView(imageView)
+                                        }
+                                    }
+                                }
+                            }
+
+                            i = 2
+                            j = 2
+                        }
+                        i++
+                    }
+                    j++
+                    i = 0
+                }
+            }
         }
         bindingPrincipal.buttonPlanta.setOnClickListener {
             bindingPrincipal.dPad.isVisible = true

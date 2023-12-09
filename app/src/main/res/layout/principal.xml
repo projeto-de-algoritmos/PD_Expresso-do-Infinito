@@ -140,7 +140,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="60dp"
-                            android:layout_marginEnd="60dp"/>
+                            android:layout_marginEnd="60dp">
+
+                        </FrameLayout>
 
                         <FrameLayout
                             android:id="@+id/frame2"
@@ -148,9 +150,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="40dp"
                             android:layout_marginEnd="40dp"
-                            android:layout_marginBottom="70dp">
-
-                        </FrameLayout>
+                            android:layout_marginBottom="70dp"/>
 
                         <FrameLayout
                             android:id="@+id/frame3"
@@ -158,7 +158,9 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="40dp"/>
+                            android:layout_marginBottom="40dp">
+
+                        </FrameLayout>
                     </androidx.cardview.widget.CardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -209,12 +211,12 @@
                                 android:textColor="#FFFFFF" />
 
                             <Button
-                                android:id="@+id/button_caixa"
+                                android:id="@+id/button_banco"
                                 style="@style/Widget.AppCompat.Button.Borderless"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/caixa_icon"
+                                android:background="@drawable/banco_icon"
                                 android:fontFamily="sans-serif-light"
                                 android:text="$250"
                                 android:textColor="#FFFFFF" />
