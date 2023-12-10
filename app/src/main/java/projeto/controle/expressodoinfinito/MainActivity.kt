@@ -26,6 +26,8 @@ class MainActivity : ComponentActivity() {
         decorView.systemUiVisibility = uiOptions
 
         var ocupacao = Array(3) {IntArray(3)}
+        var selectedImageView: ImageView? = null
+        var imageID: Int
 
         bindingPrincipal = PrincipalBinding.inflate(layoutInflater)
         bindingInicio = InicioBinding.inflate(layoutInflater)
@@ -33,20 +35,31 @@ class MainActivity : ComponentActivity() {
 
         bindingInicio.button.setOnClickListener {
             setContentView(bindingPrincipal.root)
+            bindingPrincipal.dPad.isVisible = false
         }
         bindingPrincipal.buttonVoltar.setOnClickListener {
             setContentView(bindingInicio.root)
         }
         bindingPrincipal.buttonDica.setOnClickListener {
             bindingPrincipal.cardviewDica.isVisible = true
+            bindingPrincipal.dPad.isVisible = false
         }
         bindingPrincipal.cardviewDica.setOnClickListener {
             bindingPrincipal.cardviewDica.isVisible = false
         }
 
         bindingPrincipal.buttonMesa.setOnClickListener {
-            bindingPrincipal.dPad.isVisible = true
+            bindingPrincipal.dPad.isVisible = false
             val imageView = ImageView(this)
+            val strAux = imageView.toString().substring(25, 27)
+            imageID = strAux.toInt(16)
+            imageView.isClickable = true
+
+            imageView.setOnClickListener {
+                selectedImageView = it as ImageView
+                it.isSelected = true
+                bindingPrincipal.dPad.isVisible = true
+            }
 
             var i = 0
             var j = 0
@@ -54,10 +67,10 @@ class MainActivity : ComponentActivity() {
             while (i < ocupacao.size - 1) {
                 while (j < ocupacao.size - 1) {
                     if (ocupacao[i][j] == 0 && ocupacao[i][j+1] == 0 && ocupacao[i+1][j] == 0 && ocupacao[i+1][j+1] == 0) {
-                        ocupacao[i][j] = 1
-                        ocupacao[i][j+1] = 1
-                        ocupacao[i+1][j] = 1
-                        ocupacao[i+1][j+1] = 1
+                        ocupacao[i][j] = imageID
+                        ocupacao[i][j+1] = imageID
+                        ocupacao[i+1][j] = imageID
+                        ocupacao[i+1][j+1] = imageID
 
                         when (i) {
                             0 -> {
@@ -159,8 +172,17 @@ class MainActivity : ComponentActivity() {
             }
         }
         bindingPrincipal.buttonComoda.setOnClickListener {
-            bindingPrincipal.dPad.isVisible = true
+            bindingPrincipal.dPad.isVisible = false
             val imageView = ImageView(this)
+            val strAux = imageView.toString().substring(25, 27)
+            imageID = strAux.toInt(16)
+            imageView.isClickable = true
+
+            imageView.setOnClickListener {
+                selectedImageView = it as ImageView
+                it.isSelected = true
+                bindingPrincipal.dPad.isVisible = true
+            }
 
             var i = 0
             var j = 0
@@ -177,9 +199,9 @@ class MainActivity : ComponentActivity() {
                 j = 0
 
                 if (contador == ocupacao[i].size) {
-                    ocupacao[i][j] = 1
-                    ocupacao[i][j+1] = 1
-                    ocupacao[i][j+2] = 1
+                    ocupacao[i][j] = imageID
+                    ocupacao[i][j+1] = imageID
+                    ocupacao[i][j+2] = imageID
 
                     when (i) {
                         0 -> {
@@ -280,9 +302,9 @@ class MainActivity : ComponentActivity() {
                     i = 0
 
                     if (contador == ocupacao.size) {
-                        ocupacao[i][j] = 1
-                        ocupacao[i+1][j] = 1
-                        ocupacao[i+2][j] = 1
+                        ocupacao[i][j] = imageID
+                        ocupacao[i+1][j] = imageID
+                        ocupacao[i+2][j] = imageID
 
                         when (j) {
                             0 -> {
@@ -308,6 +330,7 @@ class MainActivity : ComponentActivity() {
                                         R.drawable.comoda_vertical_e
                                     )
                                 )
+                                bindingPrincipal.frame3.addView(imageView)
                             }
                             1 -> {
                                 val imageAltura = TypedValue.applyDimension(
@@ -332,6 +355,7 @@ class MainActivity : ComponentActivity() {
                                         R.drawable.comoda_vertical
                                     )
                                 )
+                                bindingPrincipal.frame3.addView(imageView)
                             }
                             2 -> {
                                 val imageAltura = TypedValue.applyDimension(
@@ -356,6 +380,7 @@ class MainActivity : ComponentActivity() {
                                         R.drawable.comoda_vertical_d
                                     )
                                 )
+                                bindingPrincipal.frame3.addView(imageView)
                             }
                         }
                         i = ocupacao.size + 1
@@ -366,9 +391,17 @@ class MainActivity : ComponentActivity() {
             }
         }
         bindingPrincipal.buttonBanco.setOnClickListener {
-            bindingPrincipal.dPad.isVisible = true
+            bindingPrincipal.dPad.isVisible = false
             val imageView = ImageView(this)
+            val strAux = imageView.toString().substring(25, 27)
+            imageID = strAux.toInt(16)
+            imageView.isClickable = true
 
+            imageView.setOnClickListener {
+                selectedImageView = it as ImageView
+                it.isSelected = true
+                bindingPrincipal.dPad.isVisible = true
+            }
             var i = 0
             var j = 0
             var livre = false
@@ -377,8 +410,8 @@ class MainActivity : ComponentActivity() {
             while (i < ocupacao.size) {
                 while (j < ocupacao.size-1) {
                     if (ocupacao[i][j] == 0 && ocupacao[i][j+1] == 0) {
-                        ocupacao[i][j] = 1
-                        ocupacao[i][j+1] = 1
+                        ocupacao[i][j] = imageID
+                        ocupacao[i][j+1] = imageID
 
                         when (i) {
                             0 -> {
@@ -567,8 +600,8 @@ class MainActivity : ComponentActivity() {
                 while (j < ocupacao.size) {
                     while (i < ocupacao.size - 1) {
                         if (ocupacao[i][j] == 0 && ocupacao[i+1][j] == 0) {
-                            ocupacao[i][j] = 1
-                            ocupacao[i+1][j] = 1
+                            ocupacao[i][j] = imageID
+                            ocupacao[i+1][j] = imageID
 
                             when (j) {
                                 0 -> {
@@ -751,8 +784,17 @@ class MainActivity : ComponentActivity() {
             }
         }
         bindingPrincipal.buttonPlanta.setOnClickListener {
-            bindingPrincipal.dPad.isVisible = true
+            bindingPrincipal.dPad.isVisible = false
             val imageView = ImageView(this)
+            val strAux = imageView.toString().substring(25, 27)
+            imageID = strAux.toInt(16)
+            imageView.isClickable = true
+
+            imageView.setOnClickListener {
+                selectedImageView = it as ImageView
+                it.isSelected = true
+                bindingPrincipal.dPad.isVisible = true
+            }
 
             var i = 0
             var j = 0
@@ -760,7 +802,7 @@ class MainActivity : ComponentActivity() {
             while (i <= 2) {
                 while (j <= 2) {
                     if (ocupacao[i][j] == 0) {
-                        ocupacao[i][j] = 1
+                        ocupacao[i][j] = imageID
                         when (i) {
                             0 -> {
                                 val imageAltura = TypedValue.applyDimension(
@@ -967,6 +1009,283 @@ class MainActivity : ComponentActivity() {
                 i++
                 j = 0
             }
+        }
+
+        bindingPrincipal.buttonDireita.setOnClickListener {
+            var contador = 0
+
+            for (i in 0..2) {
+                for (j in 0..2) {
+                    if (ocupacao[i][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                        contador++
+                    }
+                }
+            }
+
+            when (contador) {
+                1 -> {
+                    for (i in 0..2) {
+                        for (j in 0..1) {
+                            if (ocupacao[i][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                if (ocupacao[i][j + 1] == 0) {
+                                    ocupacao[i][j] = 0
+                                    ocupacao[i][j+1] = selectedImageView.toString().substring(25, 27).toInt(16)
+                                    when (i) {
+                                        0 -> {
+                                            when (j) {
+                                                0 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+
+                                                1 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.TOP or Gravity.END
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        1 -> {
+                                            when (j) {
+                                                0 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.CENTER
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+
+                                                1 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.CENTER_VERTICAL or Gravity.END
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        2 -> {
+                                            when (j) {
+                                                0 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+
+                                                1 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.BOTTOM or Gravity.END
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+                /*
+                2 -> {
+                    for (i in 0..1) {
+                        for (j in 0..1) {
+                            if (ocupacao[i][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                if (ocupacao[i][j + 1] == ocupacao[i][j]) {
+                                    ocupacao[i][j] = 0
+                                    ocupacao[i][j+1] = selectedImageView.toString().substring(25, 27).toInt(16)
+                                    when (i) {
+                                        0 -> {
+                                            when (j) {
+                                                0 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+
+                                                1 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.TOP or Gravity.END
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        1 -> {
+                                            when (j) {
+                                                0 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.CENTER
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+
+                                                1 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.CENTER_VERTICAL or Gravity.END
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        2 -> {
+                                            when (j) {
+                                                0 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+
+                                                1 -> {
+                                                    selectedImageView?.let { imageView ->
+                                                        // Atualize a posição da ImageView selecionada
+                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                        params.gravity = Gravity.BOTTOM or Gravity.END
+                                                        imageView.layoutParams = params
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+
+                3 -> {}
+                */
+                4 -> {
+                    var i = 0
+                    var j = 0
+
+                    while (i < 2) {
+                        while (j < 2) {
+                            if (ocupacao[i][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                if (j < 1 && ocupacao[i][j + 2] == 0 && ocupacao[i+1][j+2] == 0 && i < 1 && ocupacao[i+2][j] != selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                    ocupacao[i][j] = 0
+                                    ocupacao[i+1][j] = 0
+                                    ocupacao[i][j+2] = selectedImageView.toString().substring(25, 27).toInt(16)
+                                    ocupacao[i+1][j+2] = selectedImageView.toString().substring(25, 27).toInt(16)
+                                    when (i) {
+                                        0 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.TOP or Gravity.END
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.mesa_direito
+                                                    )
+                                                )
+                                            }
+                                        }
+
+                                        1 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.BOTTOM or Gravity.END
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.mesa_direito
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+
+                                    i = 2
+                                    j = 2
+                                }
+                                else if (j < 1 && ocupacao[i][j + 2] == 0 && ocupacao[i+1][j+2] == 0 && ocupacao[i-1][j] != selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                    ocupacao[i][j] = 0
+                                    ocupacao[i+1][j] = 0
+                                    ocupacao[i][j+2] = selectedImageView.toString().substring(25, 27).toInt(16)
+                                    ocupacao[i+1][j+2] = selectedImageView.toString().substring(25, 27).toInt(16)
+                                    when (i) {
+                                        0 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.TOP or Gravity.END
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.mesa_direito
+                                                    )
+                                                )
+                                            }
+                                        }
+
+                                        1 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.BOTTOM or Gravity.END
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.mesa_direito
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+
+                                    i = 2
+                                    j = 2
+                                }
+                            }
+                            j++
+                        }
+                        j = 0
+                        i++
+                    }
+                }
+            }
+        }
+
+        bindingPrincipal.headerImage.setOnClickListener {
+            bindingPrincipal.dPad.isVisible = false
         }
 
         bindingPrincipal.buttonDescarregar.setOnClickListener {

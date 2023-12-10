@@ -19,6 +19,7 @@
                 android:id="@+id/header_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clickable="true"
                 android:foreground="@drawable/telaprincipal"
                 android:foregroundGravity="fill" />
 
