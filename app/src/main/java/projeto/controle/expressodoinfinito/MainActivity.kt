@@ -1103,90 +1103,179 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
-                /*
+
                 2 -> {
-                    for (i in 0..1) {
-                        for (j in 0..1) {
+                    for (i in ocupacao.indices) {
+                        for (j in ocupacao[i].size - 1 downTo 1) {
                             if (ocupacao[i][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
-                                if (ocupacao[i][j + 1] == ocupacao[i][j]) {
-                                    ocupacao[i][j] = 0
-                                    ocupacao[i][j+1] = selectedImageView.toString().substring(25, 27).toInt(16)
-                                    when (i) {
-                                        0 -> {
-                                            when (j) {
-                                                0 -> {
-                                                    selectedImageView?.let { imageView ->
-                                                        // Atualize a posição da ImageView selecionada
-                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
-                                                        params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-                                                        imageView.layoutParams = params
-                                                    }
-                                                }
+                                // Verifica se o objeto pode ser movido para a direita
+                                if (j < ocupacao[i].size - 1 && ocupacao[i][j + 1] == 0) {
+                                    if (ocupacao[i][j-1] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                        ocupacao[i][j + 1] = ocupacao[i][j]
+                                        ocupacao[i][j - 1] = 0
 
-                                                1 -> {
-                                                    selectedImageView?.let { imageView ->
-                                                        // Atualize a posição da ImageView selecionada
-                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
-                                                        params.gravity = Gravity.TOP or Gravity.END
-                                                        imageView.layoutParams = params
-                                                    }
+                                        when (i) {
+                                            0 -> {
+                                                selectedImageView?.let { imageView ->
+                                                    // Atualize a posição da ImageView selecionada
+                                                    val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                    params.gravity = Gravity.TOP or Gravity.END
+                                                    imageView.layoutParams = params
+                                                    imageView.setImageDrawable(
+                                                        ContextCompat.getDrawable(
+                                                            this,
+                                                            R.drawable.banco_horizontal_d
+                                                        )
+                                                    )
                                                 }
                                             }
-                                        }
 
-                                        1 -> {
-                                            when (j) {
-                                                0 -> {
-                                                    selectedImageView?.let { imageView ->
-                                                        // Atualize a posição da ImageView selecionada
-                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
-                                                        params.gravity = Gravity.CENTER
-                                                        imageView.layoutParams = params
-                                                    }
-                                                }
-
-                                                1 -> {
-                                                    selectedImageView?.let { imageView ->
-                                                        // Atualize a posição da ImageView selecionada
-                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
-                                                        params.gravity = Gravity.CENTER_VERTICAL or Gravity.END
-                                                        imageView.layoutParams = params
-                                                    }
+                                            1 -> {
+                                                selectedImageView?.let { imageView ->
+                                                    // Atualize a posição da ImageView selecionada
+                                                    val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                    params.gravity = Gravity.CENTER_VERTICAL or Gravity.END
+                                                    imageView.layoutParams = params
+                                                    imageView.setImageDrawable(
+                                                        ContextCompat.getDrawable(
+                                                            this,
+                                                            R.drawable.banco_horizontal_d
+                                                        )
+                                                    )
                                                 }
                                             }
-                                        }
 
-                                        2 -> {
-                                            when (j) {
-                                                0 -> {
-                                                    selectedImageView?.let { imageView ->
-                                                        // Atualize a posição da ImageView selecionada
-                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
-                                                        params.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-                                                        imageView.layoutParams = params
-                                                    }
-                                                }
-
-                                                1 -> {
-                                                    selectedImageView?.let { imageView ->
-                                                        // Atualize a posição da ImageView selecionada
-                                                        val params = imageView.layoutParams as FrameLayout.LayoutParams
-                                                        params.gravity = Gravity.BOTTOM or Gravity.END
-                                                        imageView.layoutParams = params
-                                                    }
+                                            2 -> {
+                                                selectedImageView?.let { imageView ->
+                                                    // Atualize a posição da ImageView selecionada
+                                                    val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                    params.gravity = Gravity.BOTTOM or Gravity.END
+                                                    imageView.layoutParams = params
+                                                    imageView.setImageDrawable(
+                                                        ContextCompat.getDrawable(
+                                                            this,
+                                                            R.drawable.banco_horizontal_d
+                                                        )
+                                                    )
                                                 }
                                             }
                                         }
                                     }
-                                    break
                                 }
+                                break
+                            }
+                        }
+                    }
+
+                    for (j in ocupacao.size - 1 downTo 0) {
+                        if (j < ocupacao.size - 1 && ocupacao[1][j + 1] == 0) {
+                            if (ocupacao[1][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                ocupacao[1][j + 1] = ocupacao[1][j]
+                                ocupacao[1][j] = 0
+
+                                if (ocupacao[0][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                                    ocupacao[0][j + 1] = ocupacao[0][j]
+                                    ocupacao[0][j] = 0
+
+                                    when (j) {
+                                        0 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.CENTER_HORIZONTAL or Gravity.TOP
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.banco_vertical
+                                                    )
+                                                )
+                                            }
+                                        }
+
+                                        1 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.TOP or Gravity.END
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.banco_vertical_d
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    ocupacao[2][j + 1] = ocupacao[2][j]
+                                    ocupacao[2][j] = 0
+
+                                    when (j) {
+                                        0 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.banco_vertical
+                                                    )
+                                                )
+                                            }
+                                        }
+
+                                        1 -> {
+                                            selectedImageView?.let { imageView ->
+                                                // Atualize a posição da ImageView selecionada
+                                                val params = imageView.layoutParams as FrameLayout.LayoutParams
+                                                params.gravity = Gravity.BOTTOM or Gravity.END
+                                                imageView.layoutParams = params
+                                                imageView.setImageDrawable(
+                                                    ContextCompat.getDrawable(
+                                                        this,
+                                                        R.drawable.banco_vertical_d
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                                break
                             }
                         }
                     }
                 }
 
-                3 -> {}
-                */
+                3 -> {
+                    for (j in ocupacao.size - 1 downTo 1) {
+                        if (ocupacao[0][j] == selectedImageView.toString().substring(25, 27).toInt(16)) {
+                           if (j < ocupacao.size - 1 && ocupacao[0][j + 1] == 0 && ocupacao[1][j + 1] == 0 && ocupacao[2][j + 1] == 0) {
+                               ocupacao[0][j+1] = ocupacao[0][j]
+                               ocupacao[1][j+1] = ocupacao[1][j]
+                               ocupacao[2][j+1] = ocupacao[2][j]
+
+                               ocupacao[0][j] = 0
+                               ocupacao[1][j] = 0
+                               ocupacao[2][j] = 0
+
+                               when (j) {
+                                   1 -> {
+
+                                   }
+
+                                   2 -> {
+
+                                   }
+                               }
+                           }
+                        }
+                    }
+                }
+
                 4 -> {
                     var i = 0
                     var j = 0
