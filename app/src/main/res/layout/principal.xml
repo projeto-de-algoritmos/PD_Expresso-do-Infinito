@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:foreground="@drawable/telaprincipal"
+                android:foreground="@drawable/imagem_de_fundo_principal"
                 android:foregroundGravity="fill" />
 
             <TableRow
@@ -38,9 +38,10 @@
                         android:layout_height="250dp"
                         android:layout_marginTop="80dp"
                         android:layout_marginBottom="80dp"
-                        app:cardBackgroundColor="#00FFFFFF"
-                        app:cardCornerRadius="0dp"
-                        app:cardElevation="0dp"
+                        android:visibility="invisible"
+                        app:cardBackgroundColor="#BF000000"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -100,19 +101,19 @@
                             <Button
                                 android:id="@+id/button_iniciar"
                                 style="@style/Widget.Material3.Button.OutlinedButton"
-                                android:layout_width="135dp"
-                                android:layout_height="48dp"
+                                android:layout_width="116dp"
+                                android:layout_height="25dp"
                                 android:layout_marginStart="33dp"
                                 android:layout_marginEnd="32dp"
                                 android:layout_marginBottom="17dp"
                                 android:fontFamily="serif-monospace"
-                                android:text="Iniciar"
+                                android:foreground="@drawable/iniciar"
                                 android:textColor="#FFFFFF"
                                 android:textSize="20sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:strokeColor="#FFFFFF" />
+                                app:strokeColor="@color/roxo" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -245,32 +246,38 @@
                 app:cardElevation="0dp"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/textView_valor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/atomic_age"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/roxo"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/TextAppearance.MaterialComponents.Headline3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-thin"
+                    android:text="Dia 1"
+                    android:textAlignment="center"
+                    android:textColor="#5E5874" />
 
-                    <TextView
-                        android:id="@+id/title"
-                        style="@style/TextAppearance.MaterialComponents.Headline3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="Dia 1"
-                        android:textAlignment="center"
-                        android:textColor="#5E5874" />
+                <Button
+                    android:id="@+id/button_voltar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="#00FFFFFF"
+                    android:foreground="@drawable/voltar" />
 
-                    <Button
-                        android:id="@+id/button_voltar"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="35dp"
-                        android:background="#00FFFFFF"
-                        android:foreground="@drawable/voltar"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -294,14 +301,38 @@
 
                 <ImageView
                     android:id="@+id/imageView_quadro2"
-                    android:layout_width="400dp"
-                    android:layout_height="300dp"
+                    android:layout_width="323dp"
+                    android:layout_height="240dp"
                     android:layout_gravity="center"
                     android:foreground="@drawable/mesa"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <FrameLayout
+                    android:id="@+id/frame1_dica"
+                    android:layout_width="202dp"
+                    android:layout_height="149dp"
+                    android:layout_gravity="center_horizontal|top">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frame2_dica"
+                    android:layout_width="232dp"
+                    android:layout_height="213dp"
+                    android:layout_gravity="center_horizontal|top">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frame3_dica"
+                    android:layout_width="276dp"
+                    android:layout_height="294dp"
+                    android:layout_gravity="center_horizontal|top">
+
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
 
             <FrameLayout
@@ -310,7 +341,7 @@
                 android:layout_height="160dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -357,6 +388,34 @@
                     android:layout_gravity="center|center_vertical"
                     android:foreground="@drawable/girar" />
             </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/resultado"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CE000000"
+                android:clickable="true"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="386dp"
+                    android:layout_height="279dp"
+                    android:layout_gravity="center"
+                    android:foreground="@drawable/pergaminho" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-light"
+                    android:textAlignment="center"
+                    android:textColor="@color/roxo"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+            </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
